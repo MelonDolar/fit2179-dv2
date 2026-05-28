@@ -5,35 +5,55 @@
     "subtitle": "Total reported fire incidents per year",
     "fontSize": 14,
     "subtitleFontSize": 10,
-    "color": "#1a1a1a",
-    "subtitleColor": "#555"
+    "color": "#f0e0d0",
+    "subtitleColor": "#c0a882"
   },
   "width": 520,
   "height": 260,
   "data": {"url": "data/bushfire_incidents.json", "format": {"property": "incidents_by_state_year"}},
-  "mark": {"type": "area", "opacity": 0.85},
+  "mark": {"type": "area", "opacity": 0.88},
   "encoding": {
     "x": {
       "field": "year",
       "type": "ordinal",
-      "axis": {"title": null, "labelAngle": 0}
+      "axis": {
+        "title": null,
+        "labelAngle": 0,
+        "labelColor": "#c0a882",
+        "tickColor": "#60504a",
+        "domainColor": "#60504a",
+        "gridColor": "#3a2e28"
+      }
     },
     "y": {
       "field": "incidents",
       "type": "quantitative",
       "stack": "zero",
-      "axis": {"title": "Total Incidents", "format": ","}
+      "axis": {
+        "title": "Total Incidents",
+        "format": ",.0f",
+        "labelColor": "#c0a882",
+        "titleColor": "#c0a882",
+        "tickColor": "#60504a",
+        "domainColor": "#60504a",
+        "gridColor": "#3a2e28"
+      }
     },
     "color": {
       "field": "state",
       "type": "nominal",
       "title": "State",
       "scale": {
-        "domain": ["NSW", "VIC", "QLD", "SA", "WA", "TAS"],
-        "range": ["#c0392b", "#e67e22", "#f39c12", "#8e44ad", "#2980b9", "#27ae60"]
+        "domain": ["QLD", "WA", "NSW", "VIC", "SA", "TAS"],
+        "range": ["#f39c12", "#2980b9", "#c0392b", "#e67e22", "#8e44ad", "#27ae60"]
+      },
+      "legend": {
+        "labelColor": "#c0a882",
+        "titleColor": "#c0a882",
+        "labelFontSize": 11,
+        "titleFontSize": 12
       }
     },
-    "order": {"field": "incidents", "type": "quantitative", "sort": "descending"},
     "tooltip": [
       {"field": "state", "title": "State"},
       {"field": "year", "title": "Year"},

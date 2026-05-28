@@ -26,22 +26,53 @@
   "layer": [
     {
       "mark": {
+        "type": "line",
+        "color": "#b0906a",
+        "strokeDash": [5, 4],
+        "strokeWidth": 1.5,
+        "opacity": 0.7
+      },
+      "transform": [{"regression": "incidents", "on": "anomaly"}],
+      "encoding": {
+        "x": {"field": "anomaly", "type": "quantitative"},
+        "y": {"field": "incidents", "type": "quantitative"}
+      }
+    },
+    {
+      "mark": {
         "type": "point",
         "filled": true,
         "size": 120,
-        "opacity": 0.85
+        "opacity": 0.88,
+        "stroke": "#fff",
+        "strokeWidth": 0.8
       },
       "encoding": {
         "x": {
           "field": "anomaly",
           "type": "quantitative",
-          "axis": {"title": "Temperature Anomaly (°C)"},
+          "axis": {
+            "title": "Temperature Anomaly (°C)",
+            "labelColor": "#3d3530",
+            "titleColor": "#3d3530",
+            "tickColor": "#c0a882",
+            "domainColor": "#c0a882",
+            "gridColor": "#e0d4c8"
+          },
           "scale": {"domain": [0.3, 1.7]}
         },
         "y": {
           "field": "incidents",
           "type": "quantitative",
-          "axis": {"title": "Total Incidents", "format": ","}
+          "axis": {
+            "title": "Total Incidents",
+            "format": ",.0f",
+            "labelColor": "#3d3530",
+            "titleColor": "#3d3530",
+            "tickColor": "#c0a882",
+            "domainColor": "#c0a882",
+            "gridColor": "#e0d4c8"
+          }
         },
         "color": {
           "field": "anomaly",
@@ -66,23 +97,17 @@
       "mark": {
         "type": "text",
         "align": "left",
-        "dx": 8,
-        "fontSize": 10,
-        "color": "#c0392b",
-        "fontStyle": "italic"
+        "dx": 10,
+        "dy": -8,
+        "fontSize": 10.5,
+        "fontStyle": "italic",
+        "fontWeight": "600",
+        "color": "#c0392b"
       },
       "encoding": {
         "x": {"field": "anomaly", "type": "quantitative"},
         "y": {"field": "incidents", "type": "quantitative"},
         "text": {"field": "label"}
-      }
-    },
-    {
-      "mark": {"type": "line", "color": "#aaa", "strokeDash": [4,3], "strokeWidth": 1},
-      "transform": [{"regression": "incidents", "on": "anomaly"}],
-      "encoding": {
-        "x": {"field": "anomaly", "type": "quantitative"},
-        "y": {"field": "incidents", "type": "quantitative"}
       }
     }
   ],

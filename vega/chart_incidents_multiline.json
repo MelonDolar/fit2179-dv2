@@ -27,12 +27,26 @@
     "x": {
       "field": "year",
       "type": "ordinal",
-      "axis": {"title": null}
+      "axis": {
+        "title": null,
+        "labelColor": "#3d3530",
+        "tickColor": "#c0a882",
+        "domainColor": "#c0a882",
+        "gridColor": "#e0d4c8"
+      }
     },
     "y": {
       "field": "incidents",
       "type": "quantitative",
-      "axis": {"title": "Incidents", "format": ","}
+      "axis": {
+        "title": "Incidents",
+        "format": ",.0f",
+        "labelColor": "#3d3530",
+        "titleColor": "#3d3530",
+        "tickColor": "#c0a882",
+        "domainColor": "#c0a882",
+        "gridColor": "#e0d4c8"
+      }
     },
     "color": {
       "field": "state",
@@ -40,7 +54,13 @@
       "title": "State",
       "scale": {
         "domain": ["NSW", "VIC", "QLD", "SA", "WA", "TAS"],
-        "range": ["#c0392b", "#e67e22", "#f39c12", "#8e44ad", "#2980b9", "#27ae60"]
+        "range": ["#c0392b", "#e67e22", "#c8960c", "#8e44ad", "#2980b9", "#27ae60"]
+      },
+      "legend": {
+        "labelColor": "#3d3530",
+        "titleColor": "#3d3530",
+        "labelFontSize": 11,
+        "titleFontSize": 12
       }
     },
     "opacity": {
