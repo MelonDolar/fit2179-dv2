@@ -1,15 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Homes Lost in the 2019–20 Black Summer",
-    "subtitle": "Number of residential structures destroyed, by state",
-    "fontSize": 14,
+    "text": "Homes Destroyed — Black Summer",
+    "subtitle": "Residential structures lost, by state",
+    "fontSize": 13,
     "subtitleFontSize": 10,
     "color": "#f0e0d0",
     "subtitleColor": "#c0a882"
   },
-  "width": 300,
-  "height": 220,
+  "width": 280,
+  "height": 240,
   "data": {"url": "data/climate_data.json", "format": {"property": "homes_lost"}},
   "layer": [
     {
@@ -17,7 +17,13 @@
       "encoding": {
         "y": {
           "field": "state", "type": "nominal", "sort": "-x",
-          "axis": {"title": null, "labelColor": "#c0a882", "domainColor": "#60504a", "tickColor": "#60504a"}
+          "axis": {
+            "title": null,
+            "labelColor": "#f0d8b8",
+            "labelFontSize": 11,
+            "domainColor": "#60504a",
+            "tickColor": "#60504a"
+          }
         },
         "x": {
           "field": "homes", "type": "quantitative",
@@ -26,6 +32,7 @@
             "format": ",.0f",
             "labelColor": "#c0a882",
             "titleColor": "#c0a882",
+            "labelFontSize": 10,
             "tickColor": "#60504a",
             "domainColor": "#60504a",
             "gridColor": "#3a2e28"
@@ -42,7 +49,10 @@
       }
     },
     {
-      "mark": {"type": "text", "align": "left", "dx": 5, "fontSize": 11, "fontWeight": "bold", "color": "#f0d0b0"},
+      "mark": {
+        "type": "text", "align": "left", "dx": 5,
+        "fontSize": 11, "fontWeight": "bold", "color": "#f0d0b0"
+      },
       "encoding": {
         "y": {"field": "state", "type": "nominal", "sort": "-x"},
         "x": {"field": "homes", "type": "quantitative"},

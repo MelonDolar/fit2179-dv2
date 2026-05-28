@@ -1,15 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Area Burned in the 2019–20 Black Summer",
-    "subtitle": "Hectares burned per state",
-    "fontSize": 14,
+    "text": "Area Burned — Black Summer",
+    "subtitle": "Hectares per state, 2019–20",
+    "fontSize": 13,
     "subtitleFontSize": 10,
     "color": "#f0e0d0",
     "subtitleColor": "#c0a882"
   },
-  "width": 340,
-  "height": 260,
+  "width": 280,
+  "height": 240,
   "data": {
     "values": [
       {"state": "NSW", "area_ha": 5490000},
@@ -26,38 +26,38 @@
     {
       "mark": {"type": "bar", "opacity": 0.9, "cornerRadiusEnd": 3},
       "encoding": {
-        "y": {"field": "state", "type": "nominal", "sort": "-x", "axis": {"title": null, "labelColor": "#c0a882", "domainColor": "#60504a", "tickColor": "#60504a"}},
+        "y": {
+          "field": "state", "type": "nominal", "sort": "-x",
+          "axis": {
+            "title": null,
+            "labelColor": "#f0d8b8",
+            "labelFontSize": 11,
+            "domainColor": "#60504a",
+            "tickColor": "#60504a"
+          }
+        },
         "x": {
           "field": "area_ha",
           "type": "quantitative",
           "axis": {
-            "title": "Hectares Burned",
+            "title": "Hectares",
             "format": "~s",
             "labelColor": "#c0a882",
             "titleColor": "#c0a882",
+            "labelFontSize": 10,
             "tickColor": "#60504a",
             "domainColor": "#60504a",
             "gridColor": "#3a2e28"
           }
         },
         "color": {
-          "field": "area_ha",
-          "type": "quantitative",
-          "scale": {"scheme": "orangered"},
-          "legend": null
+          "field": "area_ha", "type": "quantitative",
+          "scale": {"scheme": "orangered"}, "legend": null
         },
         "tooltip": [
           {"field": "state", "title": "State"},
           {"field": "area_ha", "title": "Area Burned (ha)", "format": ","}
         ]
-      }
-    },
-    {
-      "mark": {"type": "text", "align": "left", "dx": 5, "fontSize": 10, "color": "#f0d0b0"},
-      "encoding": {
-        "y": {"field": "state", "type": "nominal", "sort": "-x"},
-        "x": {"field": "area_ha", "type": "quantitative"},
-        "text": {"field": "area_ha", "type": "quantitative", "format": ",.0f"}
       }
     }
   ],

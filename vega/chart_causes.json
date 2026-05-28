@@ -2,38 +2,49 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "What Starts Bushfires?",
-    "subtitle": "Causes of reported bushfires, national average",
-    "fontSize": 14,
+    "subtitle": "Causes nationally",
+    "fontSize": 13,
     "subtitleFontSize": 10,
     "color": "#f0e0d0",
     "subtitleColor": "#c0a882"
   },
-  "width": 240,
-  "height": 240,
+  "width": 200,
+  "height": 200,
   "data": {"url": "data/climate_data.json", "format": {"property": "causes"}},
-  "mark": {"type": "arc", "innerRadius": 65, "outerRadius": 110, "padAngle": 0.03, "cornerRadius": 4},
-  "encoding": {
-    "theta": {"field": "pct", "type": "quantitative"},
-    "color": {
-      "field": "cause",
-      "type": "nominal",
-      "title": "Cause",
-      "scale": {
-        "domain": ["Lightning", "Arson", "Accidental", "Escaped burn-off", "Power lines", "Other"],
-        "range": ["#f39c12", "#c0392b", "#e67e22", "#8e44ad", "#2980b9", "#7f8c8d"]
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "innerRadius": 55,
+        "outerRadius": 95,
+        "padAngle": 0.03,
+        "cornerRadius": 3
       },
-      "legend": {
-        "labelColor": "#c0a882",
-        "titleColor": "#c0a882",
-        "labelFontSize": 10,
-        "titleFontSize": 11,
-        "symbolSize": 80
+      "encoding": {
+        "theta": {"field": "pct", "type": "quantitative"},
+        "color": {
+          "field": "cause",
+          "type": "nominal",
+          "title": "Cause",
+          "scale": {
+            "domain": ["Lightning","Arson","Accidental","Escaped burn-off","Power lines","Other"],
+            "range": ["#f5a623","#e03030","#e07820","#9b59b6","#3498db","#8e9eab"]
+          },
+          "legend": {
+            "labelColor": "#f0d8b8",
+            "titleColor": "#f0d8b8",
+            "labelFontSize": 10,
+            "titleFontSize": 11,
+            "symbolSize": 80,
+            "orient": "right"
+          }
+        },
+        "tooltip": [
+          {"field": "cause", "title": "Cause"},
+          {"field": "pct", "title": "Percentage (%)", "format": ".0f"}
+        ]
       }
-    },
-    "tooltip": [
-      {"field": "cause", "title": "Cause"},
-      {"field": "pct", "title": "Percentage (%)", "format": ".0f"}
-    ]
-  },
+    }
+  ],
   "config": {"background": "transparent", "view": {"stroke": null}}
 }

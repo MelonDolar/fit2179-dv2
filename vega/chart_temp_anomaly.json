@@ -13,7 +13,7 @@
   "data": {"url": "data/climate_data.json", "format": {"property": "temp_anomaly"}},
   "layer": [
     {
-      "mark": {"type": "area", "opacity": 0.18, "color": "#e8722a"}
+      "mark": {"type": "area", "opacity": 0.15, "color": "#e8722a", "line": false}
     },
     {
       "mark": {
@@ -21,30 +21,29 @@
         "color": "#e8722a",
         "strokeWidth": 2.5,
         "point": {"filled": true, "size": 40, "color": "#e8722a"}
-      },
-      "encoding": {
-        "tooltip": [
-          {"field": "year", "title": "Year"},
-          {"field": "anomaly", "title": "Anomaly (°C)"}
-        ]
       }
     },
     {
-      "mark": {"type": "rule", "color": "#60504a", "strokeDash": [4, 4], "strokeWidth": 1},
+      "mark": {
+        "type": "rule",
+        "color": "#706050",
+        "strokeDash": [4, 4],
+        "strokeWidth": 1
+      },
       "encoding": {"y": {"datum": 0}}
     },
     {
+      "transform": [{"filter": "datum.year == 2019"}],
       "mark": {
         "type": "text",
-        "align": "left",
-        "dx": 6,
-        "dy": -12,
+        "align": "right",
+        "dx": -6,
+        "dy": 14,
         "fontSize": 10.5,
         "fontWeight": "600",
         "color": "#ffb07a"
       },
-      "transform": [{"filter": "datum.year == 2019"}],
-      "encoding": {"text": {"value": "Black Summer: +1.52°C"}}
+      "encoding": {"text": {"value": "▲ Black Summer: +1.52°C"}}
     }
   ],
   "encoding": {
@@ -55,6 +54,7 @@
         "title": null,
         "labelAngle": -45,
         "labelColor": "#c0a882",
+        "labelFontSize": 10,
         "tickColor": "#60504a",
         "domainColor": "#60504a",
         "gridColor": "#3a2e28"
@@ -67,11 +67,16 @@
         "title": "Temp. Anomaly (°C)",
         "labelColor": "#c0a882",
         "titleColor": "#c0a882",
+        "labelFontSize": 10,
         "tickColor": "#60504a",
         "domainColor": "#60504a",
         "gridColor": "#3a2e28"
       }
-    }
+    },
+    "tooltip": [
+      {"field": "year", "title": "Year"},
+      {"field": "anomaly", "title": "Anomaly (°C)"}
+    ]
   },
   "config": {"background": "transparent", "view": {"stroke": null}}
 }
