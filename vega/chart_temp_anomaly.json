@@ -3,36 +3,26 @@
   "title": {
     "text": "Australia's Rising Temperatures",
     "subtitle": "Annual temperature anomaly relative to 1961–1990 baseline (°C)",
-    "fontSize": 14,
-    "subtitleFontSize": 10,
-    "color": "#1a1a1a",
-    "subtitleColor": "#555"
+    "fontSize": 15,
+    "subtitleFontSize": 11,
+    "color": "#f0e0d0",
+    "subtitleColor": "#c0a882"
   },
-  "width": 520,
+  "width": 480,
   "height": 240,
   "data": {"url": "data/climate_data.json", "format": {"property": "temp_anomaly"}},
   "layer": [
     {
-      "mark": {
-        "type": "area",
-        "opacity": 0.15,
-        "color": "#d84f1d"
-      },
-      "encoding": {
-        "x": {"field": "year", "type": "ordinal", "axis": {"title": null, "labelAngle": -45}},
-        "y": {"field": "anomaly", "type": "quantitative", "axis": {"title": "Temp. Anomaly (°C)"}}
-      }
+      "mark": {"type": "area", "opacity": 0.18, "color": "#e8722a"}
     },
     {
       "mark": {
         "type": "line",
-        "color": "#d84f1d",
+        "color": "#e8722a",
         "strokeWidth": 2.5,
-        "point": {"filled": true, "size": 40, "color": "#d84f1d"}
+        "point": {"filled": true, "size": 40, "color": "#e8722a"}
       },
       "encoding": {
-        "x": {"field": "year", "type": "ordinal"},
-        "y": {"field": "anomaly", "type": "quantitative"},
         "tooltip": [
           {"field": "year", "title": "Year"},
           {"field": "anomaly", "title": "Anomaly (°C)"}
@@ -40,26 +30,48 @@
       }
     },
     {
-      "mark": {"type": "rule", "color": "#999", "strokeDash": [4, 4], "strokeWidth": 1},
-      "encoding": {
-        "y": {"datum": 0}
-      }
+      "mark": {"type": "rule", "color": "#60504a", "strokeDash": [4, 4], "strokeWidth": 1},
+      "encoding": {"y": {"datum": 0}}
     },
     {
       "mark": {
         "type": "text",
         "align": "left",
-        "dx": 5,
-        "dy": -10,
-        "fontSize": 10,
-        "color": "#d84f1d",
-        "text": "Black Summer: +1.52°C"
+        "dx": 6,
+        "dy": -12,
+        "fontSize": 10.5,
+        "fontWeight": "600",
+        "color": "#ffb07a"
       },
-      "encoding": {
-        "x": {"datum": "2019"},
-        "y": {"datum": 1.52}
-      }
+      "transform": [{"filter": "datum.year == 2019"}],
+      "encoding": {"text": {"value": "Black Summer: +1.52°C"}}
     }
   ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "axis": {
+        "title": null,
+        "labelAngle": -45,
+        "labelColor": "#c0a882",
+        "tickColor": "#60504a",
+        "domainColor": "#60504a",
+        "gridColor": "#3a2e28"
+      }
+    },
+    "y": {
+      "field": "anomaly",
+      "type": "quantitative",
+      "axis": {
+        "title": "Temp. Anomaly (°C)",
+        "labelColor": "#c0a882",
+        "titleColor": "#c0a882",
+        "tickColor": "#60504a",
+        "domainColor": "#60504a",
+        "gridColor": "#3a2e28"
+      }
+    }
+  },
   "config": {"background": "transparent", "view": {"stroke": null}}
 }

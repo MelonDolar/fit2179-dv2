@@ -5,30 +5,39 @@
     "subtitle": "Number of Extreme/Catastrophic rated days per state per year",
     "fontSize": 14,
     "subtitleFontSize": 10,
-    "color": "#1a1a1a",
-    "subtitleColor": "#555"
+    "color": "#f0e0d0",
+    "subtitleColor": "#c0a882"
   },
-  "width": 480,
-  "height": 180,
+  "width": 520,
+  "height": 200,
   "data": {"url": "data/bushfire_incidents.json", "format": {"property": "fire_danger_days"}},
   "transform": [
-    {
-      "calculate": "datum.catastrophic + datum.extreme",
-      "as": "extreme_plus"
-    }
+    {"calculate": "datum.catastrophic + datum.extreme", "as": "extreme_plus"}
   ],
   "mark": {"type": "rect", "cornerRadius": 2},
   "encoding": {
     "x": {
       "field": "year",
       "type": "ordinal",
-      "axis": {"title": null, "labelAngle": -30}
+      "axis": {
+        "title": null,
+        "labelAngle": -30,
+        "labelColor": "#c0a882",
+        "tickColor": "#60504a",
+        "domainColor": "#60504a",
+        "gridColor": "transparent"
+      }
     },
     "y": {
       "field": "state",
       "type": "nominal",
-      "axis": {"title": null},
-      "sort": ["NSW", "VIC", "QLD", "SA"]
+      "sort": ["NSW", "VIC", "QLD", "SA"],
+      "axis": {
+        "title": null,
+        "labelColor": "#c0a882",
+        "domainColor": "#60504a",
+        "tickColor": "#60504a"
+      }
     },
     "color": {
       "field": "extreme_plus",
@@ -36,7 +45,14 @@
       "title": "Days",
       "scale": {
         "domain": [0, 30],
-        "range": ["#fff7ec", "#fdbb84", "#e34a33", "#7f0000"]
+        "range": ["#2e1a10", "#a03010", "#e34a33", "#fff0e0"]
+      },
+      "legend": {
+        "labelColor": "#c0a882",
+        "titleColor": "#c0a882",
+        "labelFontSize": 11,
+        "titleFontSize": 12,
+        "gradientLength": 120
       }
     },
     "tooltip": [

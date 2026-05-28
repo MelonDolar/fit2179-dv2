@@ -5,13 +5,13 @@
     "subtitle": "Causes of reported bushfires, national average",
     "fontSize": 14,
     "subtitleFontSize": 10,
-    "color": "#1a1a1a",
-    "subtitleColor": "#555"
+    "color": "#f0e0d0",
+    "subtitleColor": "#c0a882"
   },
-  "width": 260,
-  "height": 260,
+  "width": 240,
+  "height": 240,
   "data": {"url": "data/climate_data.json", "format": {"property": "causes"}},
-  "mark": {"type": "arc", "innerRadius": 70, "outerRadius": 120, "padAngle": 0.03, "cornerRadius": 4},
+  "mark": {"type": "arc", "innerRadius": 65, "outerRadius": 110, "padAngle": 0.03, "cornerRadius": 4},
   "encoding": {
     "theta": {"field": "pct", "type": "quantitative"},
     "color": {
@@ -20,7 +20,14 @@
       "title": "Cause",
       "scale": {
         "domain": ["Lightning", "Arson", "Accidental", "Escaped burn-off", "Power lines", "Other"],
-        "range": ["#f39c12", "#c0392b", "#e67e22", "#8e44ad", "#2980b9", "#95a5a6"]
+        "range": ["#f39c12", "#c0392b", "#e67e22", "#8e44ad", "#2980b9", "#7f8c8d"]
+      },
+      "legend": {
+        "labelColor": "#c0a882",
+        "titleColor": "#c0a882",
+        "labelFontSize": 10,
+        "titleFontSize": 11,
+        "symbolSize": 80
       }
     },
     "tooltip": [

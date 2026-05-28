@@ -5,27 +5,35 @@
     "subtitle": "Number of residential structures destroyed, by state",
     "fontSize": 14,
     "subtitleFontSize": 10,
-    "color": "#1a1a1a",
-    "subtitleColor": "#555"
+    "color": "#f0e0d0",
+    "subtitleColor": "#c0a882"
   },
-  "width": 380,
+  "width": 300,
   "height": 220,
   "data": {"url": "data/climate_data.json", "format": {"property": "homes_lost"}},
   "layer": [
     {
-      "mark": {"type": "bar", "cornerRadiusEnd": 4, "opacity": 0.9},
+      "mark": {"type": "bar", "cornerRadiusEnd": 3, "opacity": 0.9},
       "encoding": {
-        "y": {"field": "state", "type": "nominal", "sort": "-x", "axis": {"title": null}},
+        "y": {
+          "field": "state", "type": "nominal", "sort": "-x",
+          "axis": {"title": null, "labelColor": "#c0a882", "domainColor": "#60504a", "tickColor": "#60504a"}
+        },
         "x": {
-          "field": "homes",
-          "type": "quantitative",
-          "axis": {"title": "Homes Destroyed"}
+          "field": "homes", "type": "quantitative",
+          "axis": {
+            "title": "Homes Destroyed",
+            "format": ",.0f",
+            "labelColor": "#c0a882",
+            "titleColor": "#c0a882",
+            "tickColor": "#60504a",
+            "domainColor": "#60504a",
+            "gridColor": "#3a2e28"
+          }
         },
         "color": {
-          "field": "homes",
-          "type": "quantitative",
-          "scale": {"scheme": "reds"},
-          "legend": null
+          "field": "homes", "type": "quantitative",
+          "scale": {"scheme": "reds"}, "legend": null
         },
         "tooltip": [
           {"field": "state", "title": "State"},
@@ -34,7 +42,7 @@
       }
     },
     {
-      "mark": {"type": "text", "align": "left", "dx": 5, "fontSize": 12, "fontWeight": "bold"},
+      "mark": {"type": "text", "align": "left", "dx": 5, "fontSize": 11, "fontWeight": "bold", "color": "#f0d0b0"},
       "encoding": {
         "y": {"field": "state", "type": "nominal", "sort": "-x"},
         "x": {"field": "homes", "type": "quantitative"},
