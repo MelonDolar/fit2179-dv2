@@ -2,34 +2,41 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Fire Risk Score by State & Territory",
-    "subtitle": "Based on temperature increase, drought frequency and burn history",
+    "subtitle": "Bubble size = area burned in 2019–20 · Colour = composite risk score",
     "fontSize": 15,
     "subtitleFontSize": 11,
     "color": "#1a1a1a",
     "subtitleColor": "#555"
   },
-  "width": 560,
+  "width": 520,
   "height": 400,
-  "projection": {"type": "mercator"},
+  "projection": {
+    "type": "mercator",
+    "center": [134, -28],
+    "scale": 700
+  },
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.min.geojson",
+        "url": "data/australia_states.geojson",
         "format": {"type": "json", "property": "features"}
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#e8dfd0",
-        "stroke": "#c2a882",
+        "fill": "#d9cfc4",
+        "stroke": "#a89880",
         "strokeWidth": 1
       }
     },
     {
-      "data": {"url": "data/climate_data.json", "format": {"property": "state_climate_risk"}},
+      "data": {
+        "url": "data/climate_data.json",
+        "format": {"property": "state_climate_risk"}
+      },
       "mark": {
         "type": "circle",
-        "opacity": 0.82,
-        "stroke": "#fff",
+        "opacity": 0.85,
+        "stroke": "#ffffff",
         "strokeWidth": 1.5
       },
       "encoding": {
@@ -39,16 +46,27 @@
           "field": "total_area_burned_2019",
           "type": "quantitative",
           "title": "Area burned 2019 (ha)",
-          "scale": {"range": [100, 3500]}
+          "scale": {"range": [80, 3000]},
+          "legend": {
+            "labelFontSize": 11,
+            "titleFontSize": 12,
+            "orient": "bottom-right"
+          }
         },
         "color": {
           "field": "risk_score",
           "type": "quantitative",
           "title": "Risk Score",
-          "scale": {"scheme": "orangered", "domain": [4, 9]}
+          "scale": {"scheme": "orangered", "domain": [4, 9]},
+          "legend": {
+            "labelFontSize": 11,
+            "titleFontSize": 12,
+            "gradientLength": 120,
+            "orient": "bottom-left"
+          }
         },
         "tooltip": [
-          {"field": "state", "title": "State"},
+          {"field": "state", "title": "State / Territory"},
           {"field": "risk_score", "title": "Risk Score (out of 10)"},
           {"field": "avg_temp_increase", "title": "Temp. Increase (°C)"},
           {"field": "total_area_burned_2019", "title": "2019 Area Burned (ha)", "format": ","}
@@ -56,8 +74,5 @@
       }
     }
   ],
-  "config": {
-    "background": "transparent",
-    "view": {"stroke": null}
-  }
+  "config": {"background": "transparent", "view": {"stroke": null}}
 }
