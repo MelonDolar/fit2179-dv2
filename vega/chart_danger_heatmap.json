@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Days of Extreme or Catastrophic Fire Danger",
+    "subtitle": "Number of Extreme/Catastrophic rated days per state per year",
+    "fontSize": 14,
+    "subtitleFontSize": 10,
+    "color": "#1a1a1a",
+    "subtitleColor": "#555"
+  },
+  "width": 480,
+  "height": 180,
+  "data": {"url": "data/bushfire_incidents.json", "format": {"property": "fire_danger_days"}},
+  "transform": [
+    {
+      "calculate": "datum.catastrophic + datum.extreme",
+      "as": "extreme_plus"
+    }
+  ],
+  "mark": {"type": "rect", "cornerRadius": 2},
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "axis": {"title": null, "labelAngle": -30}
+    },
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "axis": {"title": null},
+      "sort": ["NSW", "VIC", "QLD", "SA"]
+    },
+    "color": {
+      "field": "extreme_plus",
+      "type": "quantitative",
+      "title": "Days",
+      "scale": {
+        "domain": [0, 30],
+        "range": ["#fff7ec", "#fdbb84", "#e34a33", "#7f0000"]
+      }
+    },
+    "tooltip": [
+      {"field": "state", "title": "State"},
+      {"field": "year", "title": "Year"},
+      {"field": "extreme_plus", "title": "Extreme/Catastrophic Days"},
+      {"field": "catastrophic", "title": "Catastrophic Days"},
+      {"field": "extreme", "title": "Extreme Days"}
+    ]
+  },
+  "config": {"background": "transparent", "view": {"stroke": null}}
+}

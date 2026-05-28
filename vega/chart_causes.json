@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "What Starts Bushfires?",
+    "subtitle": "Causes of reported bushfires, national average",
+    "fontSize": 14,
+    "subtitleFontSize": 10,
+    "color": "#1a1a1a",
+    "subtitleColor": "#555"
+  },
+  "width": 260,
+  "height": 260,
+  "data": {"url": "data/climate_data.json", "format": {"property": "causes"}},
+  "mark": {"type": "arc", "innerRadius": 70, "outerRadius": 120, "padAngle": 0.03, "cornerRadius": 4},
+  "encoding": {
+    "theta": {"field": "pct", "type": "quantitative"},
+    "color": {
+      "field": "cause",
+      "type": "nominal",
+      "title": "Cause",
+      "scale": {
+        "domain": ["Lightning", "Arson", "Accidental", "Escaped burn-off", "Power lines", "Other"],
+        "range": ["#f39c12", "#c0392b", "#e67e22", "#8e44ad", "#2980b9", "#95a5a6"]
+      }
+    },
+    "tooltip": [
+      {"field": "cause", "title": "Cause"},
+      {"field": "pct", "title": "Percentage (%)", "format": ".0f"}
+    ]
+  },
+  "config": {"background": "transparent", "view": {"stroke": null}}
+}

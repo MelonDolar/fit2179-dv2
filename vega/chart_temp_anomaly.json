@@ -1,0 +1,65 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Australia's Rising Temperatures",
+    "subtitle": "Annual temperature anomaly relative to 1961–1990 baseline (°C)",
+    "fontSize": 14,
+    "subtitleFontSize": 10,
+    "color": "#1a1a1a",
+    "subtitleColor": "#555"
+  },
+  "width": 520,
+  "height": 240,
+  "data": {"url": "data/climate_data.json", "format": {"property": "temp_anomaly"}},
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "opacity": 0.15,
+        "color": "#d84f1d"
+      },
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal", "axis": {"title": null, "labelAngle": -45}},
+        "y": {"field": "anomaly", "type": "quantitative", "axis": {"title": "Temp. Anomaly (°C)"}}
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#d84f1d",
+        "strokeWidth": 2.5,
+        "point": {"filled": true, "size": 40, "color": "#d84f1d"}
+      },
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "anomaly", "type": "quantitative"},
+        "tooltip": [
+          {"field": "year", "title": "Year"},
+          {"field": "anomaly", "title": "Anomaly (°C)"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "rule", "color": "#999", "strokeDash": [4, 4], "strokeWidth": 1},
+      "encoding": {
+        "y": {"datum": 0}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 5,
+        "dy": -10,
+        "fontSize": 10,
+        "color": "#d84f1d",
+        "text": "Black Summer: +1.52°C"
+      },
+      "encoding": {
+        "x": {"datum": "2019"},
+        "y": {"datum": 1.52}
+      }
+    }
+  ],
+  "config": {"background": "transparent", "view": {"stroke": null}}
+}

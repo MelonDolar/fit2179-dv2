@@ -1,0 +1,63 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Fire Risk Score by State & Territory",
+    "subtitle": "Based on temperature increase, drought frequency and burn history",
+    "fontSize": 15,
+    "subtitleFontSize": 11,
+    "color": "#1a1a1a",
+    "subtitleColor": "#555"
+  },
+  "width": 560,
+  "height": 400,
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.min.geojson",
+        "format": {"type": "json", "property": "features"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#e8dfd0",
+        "stroke": "#c2a882",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "data": {"url": "data/climate_data.json", "format": {"property": "state_climate_risk"}},
+      "mark": {
+        "type": "circle",
+        "opacity": 0.82,
+        "stroke": "#fff",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "size": {
+          "field": "total_area_burned_2019",
+          "type": "quantitative",
+          "title": "Area burned 2019 (ha)",
+          "scale": {"range": [100, 3500]}
+        },
+        "color": {
+          "field": "risk_score",
+          "type": "quantitative",
+          "title": "Risk Score",
+          "scale": {"scheme": "orangered", "domain": [4, 9]}
+        },
+        "tooltip": [
+          {"field": "state", "title": "State"},
+          {"field": "risk_score", "title": "Risk Score (out of 10)"},
+          {"field": "avg_temp_increase", "title": "Temp. Increase (°C)"},
+          {"field": "total_area_burned_2019", "title": "2019 Area Burned (ha)", "format": ","}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "background": "transparent",
+    "view": {"stroke": null}
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Area Burned in the 2019–20 Black Summer",
+    "subtitle": "Hectares burned per state — a scale that dwarfed all previous seasons",
+    "fontSize": 14,
+    "subtitleFontSize": 10,
+    "color": "#1a1a1a",
+    "subtitleColor": "#555"
+  },
+  "width": 480,
+  "height": 260,
+  "data": {
+    "values": [
+      {"state": "WA",  "area_ha": 3200000},
+      {"state": "NSW", "area_ha": 5490000},
+      {"state": "QLD", "area_ha": 2340000},
+      {"state": "VIC", "area_ha": 1500000},
+      {"state": "NT",  "area_ha": 4800000},
+      {"state": "SA",  "area_ha": 210000},
+      {"state": "TAS", "area_ha": 68000},
+      {"state": "ACT", "area_ha": 27000}
+    ]
+  },
+  "layer": [
+    {
+      "mark": {"type": "bar", "color": "#e05c1a", "opacity": 0.85, "cornerRadiusEnd": 4},
+      "encoding": {
+        "y": {"field": "state", "type": "nominal", "sort": "-x", "axis": {"title": null}},
+        "x": {
+          "field": "area_ha",
+          "type": "quantitative",
+          "axis": {"title": "Hectares Burned", "format": "~s"}
+        },
+        "color": {
+          "field": "area_ha",
+          "type": "quantitative",
+          "scale": {"scheme": "orangered"},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "state", "title": "State"},
+          {"field": "area_ha", "title": "Area Burned (ha)", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "align": "left", "dx": 5, "fontSize": 11},
+      "encoding": {
+        "y": {"field": "state", "type": "nominal", "sort": "-x"},
+        "x": {"field": "area_ha", "type": "quantitative"},
+        "text": {"field": "area_ha", "type": "quantitative", "format": ",.0f"}
+      }
+    }
+  ],
+  "config": {"background": "transparent", "view": {"stroke": null}}
+}

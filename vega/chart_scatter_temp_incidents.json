@@ -1,0 +1,90 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Hotter Years = More Fires",
+    "subtitle": "Temperature anomaly vs. total national incidents (2015–2023)",
+    "fontSize": 14,
+    "subtitleFontSize": 10,
+    "color": "#1a1a1a",
+    "subtitleColor": "#555"
+  },
+  "width": 400,
+  "height": 300,
+  "data": {
+    "values": [
+      {"year": 2015, "anomaly": 0.61, "incidents": 22288, "label": ""},
+      {"year": 2016, "anomaly": 0.74, "incidents": 23490, "label": ""},
+      {"year": 2017, "anomaly": 0.69, "incidents": 21812, "label": ""},
+      {"year": 2018, "anomaly": 0.89, "incidents": 23168, "label": ""},
+      {"year": 2019, "anomaly": 1.52, "incidents": 35306, "label": "Black Summer"},
+      {"year": 2020, "anomaly": 1.15, "incidents": 17719, "label": ""},
+      {"year": 2021, "anomaly": 0.56, "incidents": 19580, "label": ""},
+      {"year": 2022, "anomaly": 0.48, "incidents": 21550, "label": ""},
+      {"year": 2023, "anomaly": 1.28, "incidents": 23200, "label": ""}
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 120,
+        "opacity": 0.85
+      },
+      "encoding": {
+        "x": {
+          "field": "anomaly",
+          "type": "quantitative",
+          "axis": {"title": "Temperature Anomaly (°C)"},
+          "scale": {"domain": [0.3, 1.7]}
+        },
+        "y": {
+          "field": "incidents",
+          "type": "quantitative",
+          "axis": {"title": "Total Incidents", "format": ","}
+        },
+        "color": {
+          "field": "anomaly",
+          "type": "quantitative",
+          "scale": {"scheme": "orangered", "domain": [0.4, 1.6]},
+          "legend": null
+        },
+        "size": {
+          "field": "incidents",
+          "type": "quantitative",
+          "scale": {"range": [60, 400]},
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "year", "title": "Year"},
+          {"field": "anomaly", "title": "Temp Anomaly (°C)"},
+          {"field": "incidents", "title": "Incidents", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 10,
+        "color": "#c0392b",
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "x": {"field": "anomaly", "type": "quantitative"},
+        "y": {"field": "incidents", "type": "quantitative"},
+        "text": {"field": "label"}
+      }
+    },
+    {
+      "mark": {"type": "line", "color": "#aaa", "strokeDash": [4,3], "strokeWidth": 1},
+      "transform": [{"regression": "incidents", "on": "anomaly"}],
+      "encoding": {
+        "x": {"field": "anomaly", "type": "quantitative"},
+        "y": {"field": "incidents", "type": "quantitative"}
+      }
+    }
+  ],
+  "config": {"background": "transparent", "view": {"stroke": null}}
+}

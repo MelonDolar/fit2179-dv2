@@ -1,0 +1,70 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Drought and Fire: A Deadly Link",
+    "subtitle": "Rainfall deficit (mm) and total area burned nationally",
+    "fontSize": 14,
+    "subtitleFontSize": 10,
+    "color": "#1a1a1a",
+    "subtitleColor": "#555"
+  },
+  "width": 520,
+  "height": 260,
+  "data": {
+    "values": [
+      {"year": 2015, "rainfall_deficit_mm": -80, "total_area_burned_m_ha": 3.83},
+      {"year": 2016, "rainfall_deficit_mm": -98, "total_area_burned_m_ha": 3.53},
+      {"year": 2017, "rainfall_deficit_mm": -90, "total_area_burned_m_ha": 3.87},
+      {"year": 2018, "rainfall_deficit_mm": -125, "total_area_burned_m_ha": 4.39},
+      {"year": 2019, "rainfall_deficit_mm": -242, "total_area_burned_m_ha": 18.83},
+      {"year": 2020, "rainfall_deficit_mm": -38, "total_area_burned_m_ha": 2.60},
+      {"year": 2021, "rainfall_deficit_mm": 28, "total_area_burned_m_ha": 2.76},
+      {"year": 2022, "rainfall_deficit_mm": 15, "total_area_burned_m_ha": 3.04},
+      {"year": 2023, "rainfall_deficit_mm": -180, "total_area_burned_m_ha": 3.28}
+    ]
+  },
+  "resolve": {"scale": {"y": "independent"}},
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "opacity": 0.5,
+        "color": "#2980b9"
+      },
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal", "axis": {"title": null}},
+        "y": {
+          "field": "rainfall_deficit_mm",
+          "type": "quantitative",
+          "axis": {"title": "Rainfall Deficit (mm)", "titleColor": "#2980b9"},
+          "scale": {"domain": [-280, 80]}
+        },
+        "tooltip": [
+          {"field": "year", "title": "Year"},
+          {"field": "rainfall_deficit_mm", "title": "Rainfall Deficit (mm)"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#d84f1d",
+        "strokeWidth": 3,
+        "point": {"filled": true, "size": 60}
+      },
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {
+          "field": "total_area_burned_m_ha",
+          "type": "quantitative",
+          "axis": {"title": "Area Burned (million ha)", "titleColor": "#d84f1d"}
+        },
+        "tooltip": [
+          {"field": "year", "title": "Year"},
+          {"field": "total_area_burned_m_ha", "title": "Area Burned (M ha)", "format": ".2f"}
+        ]
+      }
+    }
+  ],
+  "config": {"background": "transparent", "view": {"stroke": null}}
+}

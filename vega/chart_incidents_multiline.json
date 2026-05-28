@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Fire Incidents Trend by State",
+    "subtitle": "Click a state in the legend to highlight. Hover for values.",
+    "fontSize": 14,
+    "subtitleFontSize": 10,
+    "color": "#1a1a1a",
+    "subtitleColor": "#555"
+  },
+  "width": 520,
+  "height": 280,
+  "data": {"url": "data/bushfire_incidents.json", "format": {"property": "incidents_by_state_year"}},
+  "params": [
+    {
+      "name": "state_select",
+      "select": {"type": "point", "fields": ["state"]},
+      "bind": "legend"
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "strokeWidth": 2.5,
+    "point": {"filled": true, "size": 50}
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "axis": {"title": null}
+    },
+    "y": {
+      "field": "incidents",
+      "type": "quantitative",
+      "axis": {"title": "Incidents", "format": ","}
+    },
+    "color": {
+      "field": "state",
+      "type": "nominal",
+      "title": "State",
+      "scale": {
+        "domain": ["NSW", "VIC", "QLD", "SA", "WA", "TAS"],
+        "range": ["#c0392b", "#e67e22", "#f39c12", "#8e44ad", "#2980b9", "#27ae60"]
+      }
+    },
+    "opacity": {
+      "condition": {"param": "state_select", "value": 1},
+      "value": 0.12
+    },
+    "tooltip": [
+      {"field": "state", "title": "State"},
+      {"field": "year", "title": "Year"},
+      {"field": "incidents", "title": "Incidents", "format": ","}
+    ]
+  },
+  "config": {"background": "transparent", "view": {"stroke": null}}
+}

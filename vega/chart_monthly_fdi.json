@@ -1,0 +1,58 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "When Is Fire Season?",
+    "subtitle": "Average Forest Fire Danger Index (FDI) by month — national average",
+    "fontSize": 14,
+    "subtitleFontSize": 10,
+    "color": "#1a1a1a",
+    "subtitleColor": "#555"
+  },
+  "width": 500,
+  "height": 90,
+  "data": {"url": "data/climate_data.json", "format": {"property": "monthly_fdi"}},
+  "layer": [
+    {
+      "mark": {"type": "rect", "cornerRadius": 4},
+      "encoding": {
+        "x": {
+          "field": "month",
+          "type": "ordinal",
+          "sort": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+          "axis": {"title": null, "labelFontSize": 12}
+        },
+        "color": {
+          "field": "avg_fdi",
+          "type": "quantitative",
+          "title": "Avg FDI",
+          "scale": {
+            "domain": [5, 42],
+            "range": ["#f5e9c0", "#f5a623", "#d84f1d", "#7b0000"]
+          }
+        },
+        "tooltip": [
+          {"field": "month", "title": "Month"},
+          {"field": "avg_fdi", "title": "Avg FDI"},
+          {"field": "peak_fdi", "title": "Peak FDI"},
+          {"field": "risk_level", "title": "Risk Level"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "fontSize": 11, "fontWeight": "bold"},
+      "encoding": {
+        "x": {
+          "field": "month",
+          "type": "ordinal",
+          "sort": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+        },
+        "text": {"field": "avg_fdi", "type": "quantitative"},
+        "color": {
+          "condition": {"test": "datum.avg_fdi > 25", "value": "#fff"},
+          "value": "#333"
+        }
+      }
+    }
+  ],
+  "config": {"background": "transparent", "view": {"stroke": null}}
+}

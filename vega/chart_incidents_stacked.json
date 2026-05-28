@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Bushfire Incidents by State (2015–2023)",
+    "subtitle": "Total reported fire incidents per year",
+    "fontSize": 14,
+    "subtitleFontSize": 10,
+    "color": "#1a1a1a",
+    "subtitleColor": "#555"
+  },
+  "width": 520,
+  "height": 260,
+  "data": {"url": "data/bushfire_incidents.json", "format": {"property": "incidents_by_state_year"}},
+  "mark": {"type": "area", "opacity": 0.85},
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "axis": {"title": null, "labelAngle": 0}
+    },
+    "y": {
+      "field": "incidents",
+      "type": "quantitative",
+      "stack": "zero",
+      "axis": {"title": "Total Incidents", "format": ","}
+    },
+    "color": {
+      "field": "state",
+      "type": "nominal",
+      "title": "State",
+      "scale": {
+        "domain": ["NSW", "VIC", "QLD", "SA", "WA", "TAS"],
+        "range": ["#c0392b", "#e67e22", "#f39c12", "#8e44ad", "#2980b9", "#27ae60"]
+      }
+    },
+    "order": {"field": "incidents", "type": "quantitative", "sort": "descending"},
+    "tooltip": [
+      {"field": "state", "title": "State"},
+      {"field": "year", "title": "Year"},
+      {"field": "incidents", "title": "Incidents", "format": ","}
+    ]
+  },
+  "config": {"background": "transparent", "view": {"stroke": null}}
+}
