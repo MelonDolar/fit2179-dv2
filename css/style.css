@@ -280,8 +280,21 @@ a:hover { color: var(--ember-light); }
 .three-col {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 24px;
   margin-top: 36px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.three-col-item {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.three-col-item .vega-embed,
+.three-col-item .vega-embed > * {
+  max-width: 100% !important;
+  width: 100% !important;
 }
 
 .chart-center {
