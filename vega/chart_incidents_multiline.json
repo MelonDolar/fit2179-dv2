@@ -2,76 +2,59 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Fire Incidents Trend by State",
-    "subtitle": "Click a state in the legend to highlight. Hover for values.",
-    "fontSize": 14,
-    "subtitleFontSize": 10,
-    "color": "#1a1a1a",
-    "subtitleColor": "#555"
+    "subtitle": "Click legend to highlight a state · Hover for exact values",
+    "fontSize": 14, "subtitleFontSize": 10,
+    "color": "#1a1a1a", "subtitleColor": "#555"
   },
-  "width": 520,
-  "height": 280,
+  "width": 520, "height": 280,
   "data": {"url": "data/bushfire_incidents.json", "format": {"property": "incidents_by_state_year"}},
   "params": [
     {
       "name": "state_select",
       "select": {"type": "point", "fields": ["state"]},
       "bind": "legend"
+    },
+    {
+      "name": "hover_year",
+      "select": {"type": "point", "nearest": true, "on": "mouseover", "fields": ["year"]}
     }
   ],
-  "mark": {
-    "type": "line",
-    "strokeWidth": 2.5,
-    "point": {"filled": true, "size": 50}
-  },
-  "encoding": {
-    "x": {
-      "field": "year",
-      "type": "ordinal",
-      "axis": {
-        "title": null,
-        "labelColor": "#3d3530",
-        "tickColor": "#c0a882",
-        "domainColor": "#c0a882",
-        "gridColor": "#e0d4c8"
+  "layer": [
+    {
+      "mark": {"type": "line", "strokeWidth": 2.5},
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal", "axis": {"title": null, "labelColor": "#3d3530", "tickColor": "#c0a882", "domainColor": "#c0a882", "gridColor": "#e0d4c8"}},
+        "y": {"field": "incidents", "type": "quantitative", "axis": {"title": "Incidents", "format": ",.0f", "labelColor": "#3d3530", "titleColor": "#3d3530", "tickColor": "#c0a882", "domainColor": "#c0a882", "gridColor": "#e0d4c8"}},
+        "color": {
+          "field": "state", "type": "nominal", "title": "State",
+          "scale": {"domain": ["NSW","VIC","QLD","SA","WA","TAS"], "range": ["#c0392b","#e67e22","#c8960c","#8e44ad","#2980b9","#27ae60"]},
+          "legend": {"labelColor": "#3d3530", "titleColor": "#3d3530", "labelFontSize": 11, "titleFontSize": 12}
+        },
+        "opacity": {"condition": {"param": "state_select", "value": 1}, "value": 0.1},
+        "strokeWidth": {"condition": {"param": "state_select", "value": 3}, "value": 1.5}
       }
     },
-    "y": {
-      "field": "incidents",
-      "type": "quantitative",
-      "axis": {
-        "title": "Incidents",
-        "format": ",.0f",
-        "labelColor": "#3d3530",
-        "titleColor": "#3d3530",
-        "tickColor": "#c0a882",
-        "domainColor": "#c0a882",
-        "gridColor": "#e0d4c8"
+    {
+      "mark": {"type": "point", "filled": true, "size": 80},
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "y": {"field": "incidents", "type": "quantitative"},
+        "color": {"field": "state", "type": "nominal", "scale": {"domain": ["NSW","VIC","QLD","SA","WA","TAS"], "range": ["#c0392b","#e67e22","#c8960c","#8e44ad","#2980b9","#27ae60"]}, "legend": null},
+        "opacity": {"condition": {"param": "state_select", "value": 1}, "value": 0.1},
+        "tooltip": [
+          {"field": "state", "title": "State"},
+          {"field": "year", "title": "Year"},
+          {"field": "incidents", "title": "Incidents", "format": ","}
+        ]
       }
     },
-    "color": {
-      "field": "state",
-      "type": "nominal",
-      "title": "State",
-      "scale": {
-        "domain": ["NSW", "VIC", "QLD", "SA", "WA", "TAS"],
-        "range": ["#c0392b", "#e67e22", "#c8960c", "#8e44ad", "#2980b9", "#27ae60"]
-      },
-      "legend": {
-        "labelColor": "#3d3530",
-        "titleColor": "#3d3530",
-        "labelFontSize": 11,
-        "titleFontSize": 12
+    {
+      "mark": {"type": "rule", "color": "#aaa", "strokeWidth": 1, "strokeDash": [4,3]},
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal"},
+        "opacity": {"condition": {"param": "hover_year", "empty": false, "value": 0.6}, "value": 0}
       }
-    },
-    "opacity": {
-      "condition": {"param": "state_select", "value": 1},
-      "value": 0.12
-    },
-    "tooltip": [
-      {"field": "state", "title": "State"},
-      {"field": "year", "title": "Year"},
-      {"field": "incidents", "title": "Incidents", "format": ","}
-    ]
-  },
+    }
+  ],
   "config": {"background": "transparent", "view": {"stroke": null}}
 }

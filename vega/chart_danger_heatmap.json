@@ -2,71 +2,44 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Days of Extreme or Catastrophic Fire Danger",
-    "subtitle": "Number of Extreme/Catastrophic rated days per state per year",
-    "fontSize": 14,
-    "subtitleFontSize": 11,
-    "color": "#f0e0d0",
-    "subtitleColor": "#c0a882"
+    "subtitle": "Click a state label to filter · Hover a cell for details",
+    "fontSize": 14, "subtitleFontSize": 11,
+    "color": "#f0e0d0", "subtitleColor": "#c0a882"
   },
-  "width": 500,
-  "height": 200,
-  "data": {
-    "url": "data/bushfire_incidents.json",
-    "format": {"property": "fire_danger_days"}
-  },
-  "transform": [
-    {"calculate": "datum.catastrophic + datum.extreme", "as": "extreme_plus"}
+  "width": 500, "height": 200,
+  "data": {"url": "data/bushfire_incidents.json", "format": {"property": "fire_danger_days"}},
+  "transform": [{"calculate": "datum.catastrophic + datum.extreme", "as": "extreme_plus"}],
+  "params": [
+    {
+      "name": "state_filter",
+      "select": {"type": "point", "fields": ["state"]},
+      "bind": "legend"
+    }
   ],
   "mark": {"type": "rect", "cornerRadius": 3},
   "encoding": {
     "x": {
-      "field": "year",
-      "type": "ordinal",
-      "axis": {
-        "title": null,
-        "labelAngle": -30,
-        "labelColor": "#f0d8b8",
-        "labelFontSize": 12,
-        "tickColor": "#60504a",
-        "domainColor": "#60504a",
-        "gridColor": "transparent"
-      }
+      "field": "year", "type": "ordinal",
+      "axis": {"title": null, "labelAngle": -30, "labelColor": "#f0d8b8", "labelFontSize": 12, "tickColor": "#60504a", "domainColor": "#60504a", "gridColor": "transparent"}
     },
     "y": {
-      "field": "state",
-      "type": "nominal",
-      "sort": ["NSW", "VIC", "QLD", "SA"],
-      "axis": {
-        "title": null,
-        "labelColor": "#f0d8b8",
-        "labelFontSize": 13,
-        "domainColor": "#60504a",
-        "tickColor": "#60504a"
-      }
+      "field": "state", "type": "nominal", "sort": ["NSW","VIC","QLD","SA"],
+      "axis": {"title": null, "labelColor": "#f0d8b8", "labelFontSize": 13, "domainColor": "#60504a", "tickColor": "#60504a"}
     },
     "color": {
-      "field": "extreme_plus",
-      "type": "quantitative",
-      "title": "Days",
-      "scale": {
-        "domain": [0, 30],
-        "range": ["#3a1a08", "#c04010", "#f06030", "#ffe8c0"]
-      },
-      "legend": {
-        "labelColor": "#f0d8b8",
-        "titleColor": "#f0d8b8",
-        "labelFontSize": 11,
-        "titleFontSize": 12,
-        "gradientLength": 140,
-        "gradientThickness": 14
-      }
+      "field": "extreme_plus", "type": "quantitative", "title": "Days",
+      "scale": {"domain": [0,30], "range": ["#3a1a08","#c04010","#f06030","#ffe8c0"]},
+      "legend": {"labelColor": "#f0d8b8", "titleColor": "#f0d8b8", "labelFontSize": 11, "titleFontSize": 12, "gradientLength": 140, "gradientThickness": 14}
     },
+    "opacity": {"condition": {"param": "state_filter", "value": 1}, "value": 0.2},
+    "stroke": {"condition": {"param": "state_filter", "empty": false, "value": "#ffffff"}, "value": "transparent"},
+    "strokeWidth": {"condition": {"param": "state_filter", "empty": false, "value": 2}, "value": 0},
     "tooltip": [
       {"field": "state", "title": "State"},
       {"field": "year", "title": "Year"},
       {"field": "extreme_plus", "title": "Extreme/Catastrophic Days"},
-      {"field": "catastrophic", "title": "Catastrophic Days"},
-      {"field": "extreme", "title": "Extreme Days"}
+      {"field": "catastrophic", "title": "of which Catastrophic"},
+      {"field": "extreme", "title": "of which Extreme"}
     ]
   },
   "config": {"background": "transparent", "view": {"stroke": null}}
