@@ -362,6 +362,9 @@ a:hover { color: var(--ember-light); }
   max-height: 520px;
   overflow-y: auto;
   padding-right: 4px;
+  position: sticky;
+  top: 24px;
+  align-self: start;
 }
 
 .map-annotations::-webkit-scrollbar { width: 4px; }
