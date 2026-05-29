@@ -335,6 +335,25 @@ a:hover { color: var(--ember-light); }
 .chart-source.light { color: #a08870; }
 .chart-source.centered { text-align: center; }
 
+/* ── MAP SCROLL HINT ───────────────────────────────────────── */
+.map-scroll-hint {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ember);
+  text-align: center;
+  margin-bottom: 8px;
+  animation: hintBob 2s ease-in-out infinite;
+  opacity: 0.85;
+}
+
+@keyframes hintBob {
+  0%, 100% { transform: translateY(0); opacity: 0.85; }
+  50%       { transform: translateY(3px); opacity: 1; }
+}
+
 /* ── MAP ANNOTATIONS ───────────────────────────────────────── */
 .map-annotations {
   display: flex;
