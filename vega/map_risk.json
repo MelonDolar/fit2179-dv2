@@ -8,22 +8,25 @@
     "color": "#1a1a1a",
     "subtitleColor": "#555"
   },
-  "width": 500,
+  "width": 520,
   "height": 420,
   "projection": {
     "type": "mercator",
     "center": [134, -27],
-    "scale": 680
+    "scale": 700
   },
   "layer": [
     {
       "data": {
-        "url": "data/australia_states.geojson",
-        "format": {"type": "json", "property": "features"}
+        "url": "data/ne_1-3.json",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_10m_admin_1_states_provinces"
+        }
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#b5a48a",
+        "fill": "#c4b49a",
         "stroke": "#7a6048",
         "strokeWidth": 1.2
       }
@@ -58,12 +61,11 @@
           "legend": {
             "orient": "bottom",
             "direction": "horizontal",
-            "gradientLength": 100,
+            "columns": 3,
             "labelFontSize": 10,
             "titleFontSize": 11,
             "titleColor": "#1a1a1a",
-            "labelColor": "#333",
-            "columns": 3
+            "labelColor": "#333"
           }
         },
         "color": {
