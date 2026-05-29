@@ -2,42 +2,37 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Fire Incidents Trend by State",
-    "subtitle": "Click a line to highlight it. Click again to deselect.",
+    "subtitle": "Use the checkboxes to show or hide states",
     "fontSize": 14, "subtitleFontSize": 10,
     "color": "#1a1a1a", "subtitleColor": "#555"
   },
   "width": 520, "height": 280,
   "data": {"url": "data/bushfire_incidents.json", "format": {"property": "incidents_by_state_year"}},
-  "layer": [
-    {
-      "params": [{
-        "name": "picked",
-        "select": {"type": "point", "fields": ["state"]}
-      }],
-      "mark": {"type": "line", "strokeWidth": 3, "point": {"filled": true, "size": 60}},
-      "encoding": {
-        "x": {"field": "year", "type": "ordinal", "axis": {"title": null, "labelColor": "#3d3530", "tickColor": "#c0a882", "domainColor": "#c0a882", "gridColor": "#e0d4c8"}},
-        "y": {"field": "incidents", "type": "quantitative", "axis": {"title": "Incidents", "format": ",.0f", "labelColor": "#3d3530", "titleColor": "#3d3530", "tickColor": "#c0a882", "domainColor": "#c0a882", "gridColor": "#e0d4c8"}},
-        "color": {
-          "field": "state", "type": "nominal", "title": "State",
-          "scale": {"domain": ["NSW","VIC","QLD","SA","WA","TAS"], "range": ["#c0392b","#e67e22","#c8960c","#8e44ad","#2980b9","#27ae60"]},
-          "legend": {"labelColor": "#3d3530", "titleColor": "#3d3530", "labelFontSize": 11, "titleFontSize": 12}
-        },
-        "strokeWidth": {
-          "condition": {"param": "picked", "empty": false, "value": 4},
-          "value": 1.5
-        },
-        "opacity": {
-          "condition": {"param": "picked", "empty": false, "value": 1},
-          "value": 0.2
-        },
-        "tooltip": [
-          {"field": "state", "title": "State"},
-          {"field": "year", "title": "Year"},
-          {"field": "incidents", "title": "Incidents", "format": ","}
-        ]
-      }
-    }
+  "params": [
+    {"name": "NSW", "value": true, "bind": {"input": "checkbox", "name": "NSW "}},
+    {"name": "VIC", "value": true, "bind": {"input": "checkbox", "name": "VIC "}},
+    {"name": "QLD", "value": true, "bind": {"input": "checkbox", "name": "QLD "}},
+    {"name": "SA",  "value": true, "bind": {"input": "checkbox", "name": "SA "}},
+    {"name": "WA",  "value": true, "bind": {"input": "checkbox", "name": "WA "}},
+    {"name": "TAS", "value": true, "bind": {"input": "checkbox", "name": "TAS "}}
   ],
+  "transform": [
+    {"filter": "(datum.state === 'NSW' && NSW) || (datum.state === 'VIC' && VIC) || (datum.state === 'QLD' && QLD) || (datum.state === 'SA' && SA) || (datum.state === 'WA' && WA) || (datum.state === 'TAS' && TAS)"}
+  ],
+  "mark": {"type": "line", "strokeWidth": 2.5, "point": {"filled": true, "size": 60}},
+  "encoding": {
+    "x": {"field": "year", "type": "ordinal", "axis": {"title": null, "labelColor": "#3d3530", "tickColor": "#c0a882", "domainColor": "#c0a882", "gridColor": "#e0d4c8"}},
+    "y": {"field": "incidents", "type": "quantitative", "axis": {"title": "Incidents", "format": ",.0f", "labelColor": "#3d3530", "titleColor": "#3d3530", "tickColor": "#c0a882", "domainColor": "#c0a882", "gridColor": "#e0d4c8"}},
+    "color": {
+      "field": "state", "type": "nominal", "title": "State",
+      "scale": {"domain": ["NSW","VIC","QLD","SA","WA","TAS"], "range": ["#c0392b","#e67e22","#c8960c","#8e44ad","#2980b9","#27ae60"]},
+      "legend": {"labelColor": "#3d3530", "titleColor": "#3d3530", "labelFontSize": 11, "titleFontSize": 12}
+    },
+    "tooltip": [
+      {"field": "state", "title": "State"},
+      {"field": "year", "title": "Year"},
+      {"field": "incidents", "title": "Incidents", "format": ","}
+    ]
+  },
   "config": {"background": "transparent", "view": {"stroke": null}}
 }

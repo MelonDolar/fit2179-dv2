@@ -2,17 +2,24 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Bushfire Incidents by State (2015–2023)",
-    "subtitle": "Click a coloured band to highlight that state",
+    "subtitle": "Use the checkboxes to show or hide states",
     "fontSize": 14, "subtitleFontSize": 10,
     "color": "#f0e0d0", "subtitleColor": "#c0a882"
   },
   "width": 520, "height": 260,
   "data": {"url": "data/bushfire_incidents.json", "format": {"property": "incidents_by_state_year"}},
-  "params": [{
-    "name": "picked",
-    "select": {"type": "point", "fields": ["state"]}
-  }],
-  "mark": {"type": "area", "cursor": "pointer"},
+  "params": [
+    {"name": "NSW", "value": true, "bind": {"input": "checkbox", "name": "NSW "}},
+    {"name": "VIC", "value": true, "bind": {"input": "checkbox", "name": "VIC "}},
+    {"name": "QLD", "value": true, "bind": {"input": "checkbox", "name": "QLD "}},
+    {"name": "SA",  "value": true, "bind": {"input": "checkbox", "name": "SA "}},
+    {"name": "WA",  "value": true, "bind": {"input": "checkbox", "name": "WA "}},
+    {"name": "TAS", "value": true, "bind": {"input": "checkbox", "name": "TAS "}}
+  ],
+  "transform": [
+    {"filter": "(datum.state === 'NSW' && NSW) || (datum.state === 'VIC' && VIC) || (datum.state === 'QLD' && QLD) || (datum.state === 'SA' && SA) || (datum.state === 'WA' && WA) || (datum.state === 'TAS' && TAS)"}
+  ],
+  "mark": {"type": "area", "opacity": 0.88, "cursor": "pointer"},
   "encoding": {
     "x": {"field": "year", "type": "ordinal", "axis": {"title": null, "labelAngle": 0, "labelColor": "#c0a882", "tickColor": "#60504a", "domainColor": "#60504a", "gridColor": "#3a2e28"}},
     "y": {"field": "incidents", "type": "quantitative", "stack": "zero", "axis": {"title": "Total Incidents", "format": ",.0f", "labelColor": "#c0a882", "titleColor": "#c0a882", "tickColor": "#60504a", "domainColor": "#60504a", "gridColor": "#3a2e28"}},
@@ -20,10 +27,6 @@
       "field": "state", "type": "nominal", "title": "State",
       "scale": {"domain": ["QLD","WA","NSW","VIC","SA","TAS"], "range": ["#f39c12","#2980b9","#c0392b","#e67e22","#8e44ad","#27ae60"]},
       "legend": {"labelColor": "#c0a882", "titleColor": "#c0a882", "labelFontSize": 11, "titleFontSize": 12}
-    },
-    "fillOpacity": {
-      "condition": {"param": "picked", "empty": false, "value": 1},
-      "value": 0.25
     },
     "tooltip": [
       {"field": "state", "title": "State"},
