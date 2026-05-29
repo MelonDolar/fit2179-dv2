@@ -9,11 +9,11 @@
     "subtitleColor": "#555"
   },
   "width": 520,
-  "height": 420,
+  "height": 460,
   "projection": {
     "type": "mercator",
-    "center": [134, -27],
-    "scale": 700
+    "center": [134, -28.5],
+    "scale": 620
   },
   "layer": [
     {
