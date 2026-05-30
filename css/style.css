@@ -305,7 +305,7 @@ a:hover { color: var(--ember-light); }
 
 .map-layout {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 1.6fr;
   gap: 40px;
   align-items: start;
   margin-top: 28px;
