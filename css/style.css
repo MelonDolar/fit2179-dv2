@@ -627,8 +627,6 @@ a:hover { color: var(--ember-light); }
 .fdi-card {
   border-radius: 6px;
   padding: 10px 14px;
-  font-size: 0.84rem;
-  line-height: 1.5;
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: auto auto;
@@ -657,6 +655,7 @@ a:hover { color: var(--ember-light); }
   margin: 0;
   color: var(--text-mid);
   font-size: 0.8rem;
+  line-height: 1.5;
 }
 
 .fdi-extreme { background: #fde8df; border-left-color: #c0392b; }
