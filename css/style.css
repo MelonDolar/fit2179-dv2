@@ -575,3 +575,87 @@ a:hover { color: var(--ember-light); }
 .cb-label:has(input:not(:checked)) {
   opacity: 0.35;
 }
+
+/* ── FDI MONTH CARDS ───────────────────────────────────────── */
+.fdi-scroll-hint {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ember);
+  margin: 14px 0 8px;
+  animation: hintBob 2s ease-in-out infinite;
+}
+
+.fdi-month-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.fdi-month-cards::-webkit-scrollbar { width: 4px; }
+.fdi-month-cards::-webkit-scrollbar-track { background: #e8dfd0; border-radius: 2px; }
+.fdi-month-cards::-webkit-scrollbar-thumb { background: #c0a882; border-radius: 2px; }
+
+.fdi-card {
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 2px 10px;
+  border-left: 4px solid transparent;
+}
+
+.fdi-card strong {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  align-self: center;
+}
+
+.fdi-val {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 900;
+  align-self: center;
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.fdi-card p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--text-mid);
+  font-size: 0.8rem;
+}
+
+.fdi-extreme {
+  background: #fde8df;
+  border-left-color: #c0392b;
+}
+.fdi-extreme .fdi-val { color: #c0392b; }
+
+.fdi-high {
+  background: #fef0dc;
+  border-left-color: #e07820;
+}
+.fdi-high .fdi-val { color: #e07820; }
+
+.fdi-mod {
+  background: #fef8ec;
+  border-left-color: #c8960c;
+}
+.fdi-mod .fdi-val { color: #c8960c; }
+
+.fdi-low {
+  background: #f2ede6;
+  border-left-color: #a0907a;
+}
+.fdi-low .fdi-val { color: #a0907a; }
