@@ -589,7 +589,7 @@ a:hover { color: var(--ember-light); }
 
 .economic-description {
   max-width: 820px;
-  margin: 0 auto;
+  margin: 0;
   color: #d0bfaf;
 }
 
