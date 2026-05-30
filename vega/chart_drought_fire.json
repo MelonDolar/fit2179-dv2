@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Drought and Fire: A Deadly Link",
-    "subtitle": "Rainfall deficit (mm) and total area burned nationally",
+    "subtitle": "Rainfall anomaly (mm, BOM) and total area burned nationally",
     "fontSize": 14,
     "subtitleFontSize": 10,
     "color": "#1a1a1a",
@@ -12,36 +12,32 @@
   "height": 260,
   "data": {
     "values": [
-      {"year": 2015, "rainfall_deficit_mm": -80, "total_area_burned_m_ha": 3.83},
-      {"year": 2016, "rainfall_deficit_mm": -98, "total_area_burned_m_ha": 3.53},
-      {"year": 2017, "rainfall_deficit_mm": -90, "total_area_burned_m_ha": 3.87},
-      {"year": 2018, "rainfall_deficit_mm": -125, "total_area_burned_m_ha": 4.39},
-      {"year": 2019, "rainfall_deficit_mm": -242, "total_area_burned_m_ha": 18.83},
-      {"year": 2020, "rainfall_deficit_mm": -38, "total_area_burned_m_ha": 2.60},
-      {"year": 2021, "rainfall_deficit_mm": 28, "total_area_burned_m_ha": 2.76},
-      {"year": 2022, "rainfall_deficit_mm": 15, "total_area_burned_m_ha": 3.04},
-      {"year": 2023, "rainfall_deficit_mm": -180, "total_area_burned_m_ha": 3.28}
+      {"year": 2015, "rainfall_deficit_mm": -29,  "total_area_burned_m_ha": 3.83},
+      {"year": 2016, "rainfall_deficit_mm": 66,   "total_area_burned_m_ha": 3.53},
+      {"year": 2017, "rainfall_deficit_mm": 28,   "total_area_burned_m_ha": 3.87},
+      {"year": 2018, "rainfall_deficit_mm": -60,  "total_area_burned_m_ha": 4.39},
+      {"year": 2019, "rainfall_deficit_mm": -190, "total_area_burned_m_ha": 18.83},
+      {"year": 2020, "rainfall_deficit_mm": 21,   "total_area_burned_m_ha": 2.60},
+      {"year": 2021, "rainfall_deficit_mm": 42,   "total_area_burned_m_ha": 2.76},
+      {"year": 2022, "rainfall_deficit_mm": 123,  "total_area_burned_m_ha": 3.04},
+      {"year": 2023, "rainfall_deficit_mm": 7,    "total_area_burned_m_ha": 3.28}
     ]
   },
   "resolve": {"scale": {"y": "independent"}},
   "layer": [
     {
-      "mark": {
-        "type": "bar",
-        "opacity": 0.5,
-        "color": "#2980b9"
-      },
+      "mark": {"type": "bar", "opacity": 0.5, "color": "#2980b9"},
       "encoding": {
         "x": {"field": "year", "type": "ordinal", "axis": {"title": null}},
         "y": {
           "field": "rainfall_deficit_mm",
           "type": "quantitative",
-          "axis": {"title": "Rainfall Deficit (mm)", "titleColor": "#2980b9"},
-          "scale": {"domain": [-280, 80]}
+          "axis": {"title": "Rainfall Anomaly (mm)", "titleColor": "#2980b9"},
+          "scale": {"domain": [-220, 150]}
         },
         "tooltip": [
-          {"field": "year", "title": "Year"},
-          {"field": "rainfall_deficit_mm", "title": "Rainfall Deficit (mm)"}
+          {"field": "year",               "title": "Year"},
+          {"field": "rainfall_deficit_mm","title": "Rainfall Anomaly (mm)"}
         ]
       }
     },
@@ -60,8 +56,8 @@
           "axis": {"title": "Area Burned (million ha)", "titleColor": "#d84f1d"}
         },
         "tooltip": [
-          {"field": "year", "title": "Year"},
-          {"field": "total_area_burned_m_ha", "title": "Area Burned (M ha)", "format": ".2f"}
+          {"field": "year",                    "title": "Year"},
+          {"field": "total_area_burned_m_ha",  "title": "Area Burned (M ha)", "format": ".2f"}
         ]
       }
     }

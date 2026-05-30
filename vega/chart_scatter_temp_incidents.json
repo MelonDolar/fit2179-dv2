@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Hotter Years = More Fires",
-    "subtitle": "Temperature anomaly vs. total national incidents (2015–2023)",
+    "subtitle": "Temperature anomaly (BOM, vs 1961–1990 baseline) vs. total national incidents (2015–2023)",
     "fontSize": 14,
     "subtitleFontSize": 10,
     "color": "#1a1a1a",
@@ -12,15 +12,15 @@
   "height": 300,
   "data": {
     "values": [
-      {"year": 2015, "anomaly": 0.61, "incidents": 22288, "label": ""},
-      {"year": 2016, "anomaly": 0.74, "incidents": 23490, "label": ""},
-      {"year": 2017, "anomaly": 0.69, "incidents": 21812, "label": ""},
-      {"year": 2018, "anomaly": 0.89, "incidents": 23168, "label": ""},
+      {"year": 2015, "anomaly": 0.83, "incidents": 22288, "label": ""},
+      {"year": 2016, "anomaly": 1.09, "incidents": 23490, "label": ""},
+      {"year": 2017, "anomaly": 0.95, "incidents": 21812, "label": ""},
+      {"year": 2018, "anomaly": 1.14, "incidents": 23168, "label": ""},
       {"year": 2019, "anomaly": 1.52, "incidents": 35306, "label": "Black Summer"},
       {"year": 2020, "anomaly": 1.15, "incidents": 17719, "label": ""},
       {"year": 2021, "anomaly": 0.56, "incidents": 19580, "label": ""},
-      {"year": 2022, "anomaly": 0.48, "incidents": 21550, "label": ""},
-      {"year": 2023, "anomaly": 1.28, "incidents": 23200, "label": ""}
+      {"year": 2022, "anomaly": 0.50, "incidents": 21550, "label": ""},
+      {"year": 2023, "anomaly": 0.98, "incidents": 23200, "label": ""}
     ]
   },
   "layer": [
@@ -52,7 +52,7 @@
           "field": "anomaly",
           "type": "quantitative",
           "axis": {
-            "title": "Temperature Anomaly (°C)",
+            "title": "Temperature Anomaly (°C above 1961–1990 avg)",
             "labelColor": "#3d3530",
             "titleColor": "#3d3530",
             "tickColor": "#c0a882",
@@ -87,8 +87,8 @@
           "legend": null
         },
         "tooltip": [
-          {"field": "year", "title": "Year"},
-          {"field": "anomaly", "title": "Temp Anomaly (°C)"},
+          {"field": "year",      "title": "Year"},
+          {"field": "anomaly",   "title": "Temp Anomaly (°C)"},
           {"field": "incidents", "title": "Incidents", "format": ","}
         ]
       }
@@ -105,7 +105,7 @@
         "color": "#c0392b"
       },
       "encoding": {
-        "x": {"field": "anomaly", "type": "quantitative"},
+        "x": {"field": "anomaly",   "type": "quantitative"},
         "y": {"field": "incidents", "type": "quantitative"},
         "text": {"field": "label"}
       }

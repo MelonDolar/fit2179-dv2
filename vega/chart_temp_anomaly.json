@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Australia's Rising Temperatures",
-    "subtitle": "Annual temperature anomaly relative to 1961–1990 baseline (°C)",
+    "subtitle": "Annual mean temperature anomaly relative to 1961–1990 baseline (°C) — Source: BOM ACORN-SAT",
     "fontSize": 15,
     "subtitleFontSize": 11,
     "color": "#f0e0d0",
@@ -74,7 +74,7 @@
       }
     },
     "tooltip": [
-      {"field": "year", "title": "Year"},
+      {"field": "year",    "title": "Year"},
       {"field": "anomaly", "title": "Anomaly (°C)"}
     ]
   },
