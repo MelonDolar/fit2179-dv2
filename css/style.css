@@ -531,43 +531,47 @@ a:hover { color: var(--ember-light); }
 /* ── INTERACTIVE CHECKBOX CONTROLS ────────────────────────── */
 .chart-interactive-wrap {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .cb-row {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   gap: 8px;
-  padding: 0 4px;
+  padding-top: 44px;
+  flex-shrink: 0;
 }
 
 .cb-label {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   font-family: var(--font-body);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  padding: 4px 12px 4px 8px;
+  padding: 5px 14px 5px 10px;
   border-radius: 20px;
   border: 2px solid currentColor;
   cursor: pointer;
   transition: opacity 0.15s;
   user-select: none;
+  white-space: nowrap;
 }
 
 .cb-light .cb-label { background: rgba(255,255,255,0.6); }
 .cb-dark  .cb-label { background: rgba(0,0,0,0.25); }
 
 .cb-label input[type="checkbox"] {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   cursor: pointer;
   accent-color: currentColor;
   flex-shrink: 0;
 }
 
 .cb-label:has(input:not(:checked)) {
-  opacity: 0.4;
+  opacity: 0.35;
 }
