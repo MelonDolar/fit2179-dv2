@@ -578,17 +578,23 @@ a:hover { color: var(--ember-light); }
 
 /* ── ECONOMIC CHART LAYOUT ─────────────────────────────────── */
 .economic-section {
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 1fr 2fr;
   align-items: start;
 }
 
-.chart-economic-wrap {
-  align-items: flex-start;
+.economic-chart-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  min-width: 0;
 }
 
-.economic-chart-col {
-  flex: 1;
-  min-width: 0;
+.cb-row-horizontal {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 /* ── FDI MONTH CARDS ───────────────────────────────────────── */
