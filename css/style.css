@@ -576,6 +576,29 @@ a:hover { color: var(--ember-light); }
   opacity: 0.35;
 }
 
+/* ── ECONOMIC CHART LAYOUT ─────────────────────────────────── */
+.chart-economic-wrap {
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.economic-chart-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.economic-description {
+  max-width: 820px;
+  margin: 0 auto;
+  color: #d0bfaf;
+}
+
+.economic-description p {
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
 /* ── FDI MONTH CARDS ───────────────────────────────────────── */
 .fdi-scroll-hint {
   font-family: var(--font-body);
@@ -636,26 +659,11 @@ a:hover { color: var(--ember-light); }
   font-size: 0.8rem;
 }
 
-.fdi-extreme {
-  background: #fde8df;
-  border-left-color: #c0392b;
-}
+.fdi-extreme { background: #fde8df; border-left-color: #c0392b; }
 .fdi-extreme .fdi-val { color: #c0392b; }
-
-.fdi-high {
-  background: #fef0dc;
-  border-left-color: #e07820;
-}
-.fdi-high .fdi-val { color: #e07820; }
-
-.fdi-mod {
-  background: #fef8ec;
-  border-left-color: #c8960c;
-}
-.fdi-mod .fdi-val { color: #c8960c; }
-
-.fdi-low {
-  background: #f2ede6;
-  border-left-color: #a0907a;
-}
-.fdi-low .fdi-val { color: #a0907a; }
+.fdi-high    { background: #fef0dc; border-left-color: #e07820; }
+.fdi-high .fdi-val    { color: #e07820; }
+.fdi-mod     { background: #fef8ec; border-left-color: #c8960c; }
+.fdi-mod .fdi-val     { color: #c8960c; }
+.fdi-low     { background: #f2ede6; border-left-color: #a0907a; }
+.fdi-low .fdi-val     { color: #a0907a; }
